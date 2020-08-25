@@ -5,25 +5,55 @@
     background-size: cover;
     background-repeat: no-repeat; 
     height: 115vh;
-    opacity: 0.8;
+    opacity: 0.7;
+}
+
+.categories h1{
+    padding-top: 1.5rem;
+    /* margin: 1.5rem auto; */
+    text-align: center;
+}
+
+.categories h2{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .aboutus{
-    margin-bottom: 25px;
+    font-size: 180%;
+    text-align: center;
+    /* margin-bottom: 30px; */
+}
+
+.content{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.categories hr{
+    border: 1px solid;
+}
+
+.categories .col-lg-6{
+    padding: 0px;
+}
+
+.team{
+    position: relative;
+    margin-bottom: 50px;
     padding-top: 25px;
+    margin-left: 75px;
     width: 25rem;
     border: 1px solid;
     border-radius: 20px;
     background-color: #48717a;
-    z-index: 1000;
     text-align:center;
+    z-index: 1000;
+    box-shadow:  20px 15px 4px rgba(132, 204, 147, 0.5);
 }
 
-.padding{
-    padding: 0px;
-}
-
-.aboutus:hover{
+.team:hover{
     transition: 0.5s ease;
     background-color: #48717a;
 }
@@ -33,42 +63,72 @@
     border: 1px solid;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    padding: 0px;
 }
 
-.aboutus:hover .hide{
-    display: block;
+.team:hover .hide{
+    display: table;
     color: #6c757d !important;
     background-color: #6c757d;
-    text-align: center;
+    transition: all 0.4s ease-in-out;
+    padding: 0.5rem 0;
+}
+
+.team h2{
+    margin-top: 80px;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.team h4{
+    margin-bottom: 85px;
+    color: #2ecc71;
 }
 
 .img{
-    justify-content: center;
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
+    transition: all 0.4s ease-in-out;
 }
 
-.aboutus h2{
-    margin-top:45px;
-}
-
-.aboutus h4{
-    margin-bottom:50px;
-}
-
-.img:hover {
-    width:200px;
-    height:200px;
-}
-
-/* .circle {
-    position: absolute;
-    width: 200%;
-    height: 100px;
-    margin: 0 auto;
-    background: lightgrey;
+.team:hover .img {
+    width:120px;
+    height:120px;
+    border: 10px solid white;
     border-radius: 50%;
-    margin-left: -50%;
-    margin-top: 250px;
-    transition-duration: 0.4s;
-  } */
+    transition: all 0.4s ease-in-out;
+}
+
+.border-extension{
+    width: 140px;
+    height: 140px;
+    margin-left: 128px;
+    margin-top: 35px;
+    border-radius:50%;
+    transition: all 0.4s ease-in-out;
+}
+
+.team:hover .border-extension{
+    border: 10px solid gray;
+    transition: all 0.4s ease-in-out;
+}
+
+.same-line{
+    min-width: 396px;
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.same-line li{
+    display: inline;
+    padding: 0.7rem;
+}
+
+.same-line li:hover{
+    background-color: darkgrey;
+}
+
+.same-line li a{
+    color: white !important;
+}
