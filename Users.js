@@ -10,17 +10,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password:{
-        type: String,
-        required: true,
-        minlength: 5
+    hash:{
+        type: String
+    },
+    salt:{
+        type: String
     },
     facebookId: String,
-    goggleId: String,
-    admin: {
-        type: Boolean,
-        default: false
-    },
+    googleId: String,
     resetToken: String,
     expireToken: Date
 });
