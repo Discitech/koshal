@@ -1,9 +1,8 @@
 import React,{Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faFacebook,faGoogle,faInstagram } from '@fortawesome/free-brands-svg-icons';
+import {faFacebook,faGoogle,faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope,faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router';
 import '../../css/login.css';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,7 +19,10 @@ class Login extends Component{
             tick: false
 		}
 		this.clickHand = this.clickHand.bind(this);
-		this.login = this.login.bind(this);
+        this.login = this.login.bind(this);
+        this.googleAuth = this.googleAuth.bind(this);
+		this.facebookAuth = this.facebookAuth.bind(this);
+		this.githubAuth = this.githubAuth.bind(this);
 	}
 
     login(){
@@ -36,8 +38,36 @@ class Login extends Component{
                     email: "",
                     password: ""
                 };
-                console.log("1")
-                toast.success('You have sign in successsfully.', {
+
+                this.props.history.push('/');
+            } 
+            else if(res.data.success === false){
+                toast.error('Failed Sign In', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+    googleAuth(){
+        axios.get('http://localhost:5000/auth/google',{
+            headers: {"Access-Control-Allow-Origin": "*"}
+        })
+        .then((res) => {
+            if(res.data.success === true){
+                localStorage.setItem("jwt",res.data.token);
+                localStorage.setItem("user",JSON.stringify(res.data.user));
+             
+                toast.success('You have successfully signIn through Google.', {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -46,8 +76,79 @@ class Login extends Component{
                     draggable: true,
                     progress: undefined,
                 });
-                return <Redirect to={{pathname: "/Blogs" }} />
-                console.log("2")
+                this.props.history.push('/');
+            } 
+            else if(res.data.success === false){
+                toast.error('Failed Sign In', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+
+    githubAuth(){
+        axios.get('/auth/github')
+        .then((res) => {
+            if(res.data.success === true){
+                localStorage.setItem("jwt",res.data.token);
+                localStorage.setItem("user",JSON.stringify(res.data.user));
+             
+                toast.success('You have successfully signIn through Github.', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                this.props.history.push('/');
+            } 
+            else if(res.data.success === false){
+                toast.error('Failed Sign In', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+
+    facebookAuth(){
+        axios.get('/auth/facebook')
+        .then((res) => {
+            if(res.data.success === true){
+                localStorage.setItem("jwt",res.data.token);
+                localStorage.setItem("user",JSON.stringify(res.data.user));
+             
+                toast.success('You have successfully signIn through Facebook.', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                this.props.history.push('/');
             } 
             else if(res.data.success === false){
                 toast.error('Failed Sign In', {
@@ -131,6 +232,11 @@ class Login extends Component{
 	render(){
 		return(
 			<div>
+                <div className="nav-1">
+                    <Link to="/">
+                        Code Fox
+                    </Link>
+                </div>
 				<div className="main-container">		
                     <div className="base-container-1">
                         <h1>Log In</h1>
@@ -143,7 +249,7 @@ class Login extends Component{
 								<FontAwesomeIcon icon={faLock} className="user-logo"/>				
                                 <input type="password" className="input-4" value={this.state.password} name="password" placeholder="Your Password..." onChange={(event) => {this.setState({password:event.target.value})}}/>
                             </div>			
-                            <p><span><input type="checkbox" onChange={()=> this.setState({tick: !this.state.tick})}/></span>I agree to the terms and conditions of the services</p>
+                            <p><span><input type="checkbox" onChange={()=> this.setState({tick: !this.state.tick})}/></span> I agree to the terms and conditions of the services</p>
                             <button type="submit" onClick={(event) => {this.clickHand(event)}} className="btn-4">LogIn</button>
                             <Link to="/Forgot">Forgot Pasword ?</Link>
                         </form>
@@ -157,20 +263,21 @@ class Login extends Component{
                             <h1>Other ways to Login</h1>
                             <div className="adjust-4">
                                 <div className="envolope">
-                                    <span  className="logo-color-1"><FontAwesomeIcon icon={faFacebook} /></span>
-                                    <a href="#">Facebook Login</a>
+                                    <span className="logo-color-1"><FontAwesomeIcon icon={faFacebook} /></span>
+                                    <button className="social-6" onClick={this.facebookAuth}>Facebook Login</button>
                                 </div>
                                 <div className="envolope">
-                                    <span  className="logo-color-1"><FontAwesomeIcon icon={faGoogle}/></span>
-                                    <a href="#">Google Login</a>
+                                    <span className="logo-color-1"><FontAwesomeIcon icon={faGoogle}/></span>
+                                    <button className="social-6" onClick={this.googleAuth}>Google Login</button>
                                 </div>
                                 <div className="envolope">
-                                    <span  className="logo-color-1"><FontAwesomeIcon icon={faInstagram} /></span>
-                                    <a href="#">Instagram Login</a>
+                                    <span className="logo-color-1"><FontAwesomeIcon icon={faGithub} /></span>
+                                    <button className="social-6" onClick={this.githubAuth}>Github Login</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div className="footer-2">&copy; discitetech.com | designed by code fox </div>
 	        <ToastContainer />
 	    </div>
 	)}
