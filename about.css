@@ -1,50 +1,56 @@
-.back-image{
-    background: url(../images/2.jpg);
-    background-color: #000000;
-    background-position: 'center';
-    background-size: cover;
-    background-repeat: no-repeat; 
-    height: 115vh;
-    opacity: 0.7;
-}
+.about-container{
+    position:relative;
+    margin-left: 95px;
+    margin-right: 95px;
+} 
 
-.categories h1{
-    padding-top: 1.5rem;
-    /* margin: 1.5rem auto; */
+.team-container{
+    margin: 0 auto;
     text-align: center;
 }
 
-.categories h2{
+.team-container h2{
+    margin-bottom: 50px;
+}
+
+.about-container h1{
+    padding-top: 2.5rem;
+    text-align: center;
+}
+
+.about-container h2{
     margin-top: 2rem;
     margin-bottom: 2rem;
     text-align: center;
 }
 
 .aboutus{
-    font-size: 180%;
+    font-size: 1.8em;
     text-align: center;
-    /* margin-bottom: 30px; */
+    COLOR: #07689f
 }
 
 .content{
     text-align: center;
     margin-bottom: 2rem;
+    font-size: larger;
+    font-weight: 600;
+    color: #40a8c4;
 }
 
-.categories hr{
+.about-container hr{
     border: 1px solid;
 }
 
-.categories .col-lg-6{
+.about-container .col-lg-6{
     padding: 0px;
 }
 
 .team{
     position: relative;
-    margin-bottom: 50px;
     padding-top: 25px;
-    margin-left: 75px;
-    width: 25rem;
+    width: 75%;
+    margin: 0 auto 50px auto;
     border: 1px solid;
     border-radius: 20px;
     background-color: #48717a;
@@ -67,7 +73,7 @@
 }
 
 .team:hover .hide{
-    display: table;
+    display: block;
     color: #6c757d !important;
     background-color: #6c757d;
     transition: all 0.4s ease-in-out;
@@ -102,8 +108,7 @@
 .border-extension{
     width: 140px;
     height: 140px;
-    margin-left: 128px;
-    margin-top: 35px;
+    margin: 35px auto 0 auto;
     border-radius:50%;
     transition: all 0.4s ease-in-out;
 }
@@ -114,9 +119,8 @@
 }
 
 .same-line{
-    min-width: 396px;
 	list-style: none;
-    margin: 0px;
+    margin: 0px auto;
     padding: 0px;
 }
 
@@ -131,4 +135,37 @@
 
 .same-line li a{
     color: white !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .team{
+        width: 90%
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .team {
+        width: 70%;
+    }
+} 
+
+@media screen and (max-width: 768px) {
+    .team{
+        width: 70%;
+    }
+} 
+
+@media screen and (max-width: 500px) {
+    .team{
+        width: 80%;
+    }
+} 
+
+@media screen and (max-width: 425px) {
+    .team{
+        width: 95%;
+    }
+    .about-container{
+        margin: 0 8px;
+    }
 }
